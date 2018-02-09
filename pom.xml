@@ -71,7 +71,8 @@
                         </Sling-Nodetypes>
                         <Sling-Initial-Content>
                             SLING-INF/content;path:=/sling-test;overwrite=true;uninstall=true,
-                            SLING-INF/install;path:=/apps/sling-test/install;overwrite=true;uninstall=true
+                            SLING-INF/install;path:=/apps/sling-test/install;overwrite=true;uninstall=true,
+                            SLING-INF/root;path:=/;overwrite=false;uninstall=false,
                         </Sling-Initial-Content>
                         <Sling-Bundle-Resources>
                             /sling-test/sling/from-bundle;path:=/SLING-INF/res/sling-test/sling/from-bundle,
