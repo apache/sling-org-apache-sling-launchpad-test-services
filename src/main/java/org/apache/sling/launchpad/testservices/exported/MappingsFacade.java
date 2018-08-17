@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.apache.sling.launchpad.testservices.serversidetests;
+package org.apache.sling.launchpad.testservices.exported;
 
 import javax.jcr.Session;
 

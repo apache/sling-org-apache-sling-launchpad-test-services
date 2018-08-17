@@ -61,7 +61,8 @@
                         </Import-Package>
                         <Export-Package>
                           org.apache.sling.launchpad.testservices.exported,
-                          org.apache.sling.launchpad.testservices.models
+                          org.apache.sling.launchpad.testservices.models,
+                          org.apache.sling.launchpad.testservices.events
                         </Export-Package>
                         <Private-Package>
                             org.apache.sling.launchpad.testservices.*
@@ -119,6 +120,12 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.annotation</artifactId>
+            <version>6.0.1</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.jackrabbit</groupId>
             <artifactId>jackrabbit-jcr-server</artifactId>

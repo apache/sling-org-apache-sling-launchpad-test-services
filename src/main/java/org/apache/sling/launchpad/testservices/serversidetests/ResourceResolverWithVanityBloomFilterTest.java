@@ -16,6 +16,7 @@
  */
 package org.apache.sling.launchpad.testservices.serversidetests;
 
+import org.apache.sling.launchpad.testservices.exported.MappingsFacade;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
