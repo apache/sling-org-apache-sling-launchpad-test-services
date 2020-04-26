@@ -22,7 +22,7 @@ import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
 
 /** Example/test filter */
-@Component(immediate=true, metatype=false)
+@Component(metatype=false)
 @Service(value=javax.servlet.Filter.class)
 @Properties({
     @Property(name="service.description", value="NoProperty Test Filter"),
