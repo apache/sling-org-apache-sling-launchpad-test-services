@@ -46,7 +46,7 @@ public class MappingEventsTest {
     private static final Logger logger = LoggerFactory.getLogger(MappingEventsTest.class);
     private static Session session;
     private Node mapRoot;
-    private static List<String> toDelete = new ArrayList<String>();
+    private static List<String> toDelete = new ArrayList<>();
     
     private static final int N_STEPS = 20;
     

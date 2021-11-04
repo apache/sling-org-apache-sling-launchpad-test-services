@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.jcr.Session;
@@ -61,14 +62,16 @@ public class SystemUsersInitializer implements SlingRepositoryInitializer {
             if(is == null) {
                 throw new IOException("Class Resource not found:" + REPOINIT_FILE);
             }
-            final Reader r = new InputStreamReader(is, "UTF-8");
+            final Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
             final List<Operation> ops = parser.parse(r); 
             log.info("Executing {} repoinit Operations", ops.size());
             processor.apply(s, ops);
             s.save();
         } finally {
             s.logout();
-            is.close();
+            if (is != null) {
+                is.close();
+            }
         }
     }
 }

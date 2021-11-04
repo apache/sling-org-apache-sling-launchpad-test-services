@@ -49,7 +49,7 @@ public class PlanetsResourceProvider extends ResourceProvider<DoesNotNeedAContex
 
     /** Our planet data. PlanetResource is created when resolving, as
      *  it points to a specific ResourceResolver. */
-    private static final Map<String, ValueMap> PLANETS = new HashMap<String, ValueMap>();
+    private static final Map<String, ValueMap> PLANETS = new HashMap<>();
     
     /** This can be configurable of course */ 
     public static final String ROOT = "/planets";
@@ -95,7 +95,7 @@ public class PlanetsResourceProvider extends ResourceProvider<DoesNotNeedAContex
     public Iterator<Resource> listChildren(ResolveContext<DoesNotNeedAContext> ctx, Resource parent) {
         if(parent.getPath().startsWith(ROOT)) {
             // Not the most efficient thing...good enough for this example
-            final List<Resource> kids = new ArrayList<Resource>();
+            final List<Resource> kids = new ArrayList<>();
             for(Map.Entry<String, ValueMap> e : PLANETS.entrySet()) {
                 if(parent.getPath().equals(parentPath(e.getKey()))) {
                     kids.add(new PlanetResource(parent.getResourceResolver(), e.getKey(), e.getValue()));

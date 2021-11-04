@@ -64,9 +64,7 @@ public class SaxServlet extends SlingAllMethodsServlet {
 
             response.setContentType("text/plain");
             response.getWriter().write(handler.getValue());
-        } catch (ParserConfigurationException e) {
-            throw new ServletException(e.getMessage(), e);
-        } catch (SAXException e) {
+        } catch (SAXException | ParserConfigurationException e) {
             throw new ServletException(e.getMessage(), e);
         }
     }

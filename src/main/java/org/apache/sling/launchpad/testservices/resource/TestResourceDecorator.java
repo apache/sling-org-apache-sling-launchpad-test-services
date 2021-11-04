@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 public class TestResourceDecorator implements ResourceDecorator {
 
     private final String PATH = "/testing/" + getClass().getSimpleName() + "/";
-    private final String RESOURCE_TYPE = "TEST_RESOURCE_DECORATOR_RESOURCE_TYPE";
+    private static final String RESOURCE_TYPE = "TEST_RESOURCE_DECORATOR_RESOURCE_TYPE";
     
     public Resource decorate(Resource resource, HttpServletRequest request) {
         return decorate(resource);

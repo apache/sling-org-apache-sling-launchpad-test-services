@@ -56,16 +56,12 @@ import org.slf4j.LoggerFactory;
 )
 public class EventsCounterImpl extends SlingSafeMethodsServlet implements EventHandler,EventsCounter {
 
-    private final Map<String, AtomicInteger> counters = new HashMap<String, AtomicInteger>();
+    private final Map<String, AtomicInteger> counters = new HashMap<>();
     private final Logger log = LoggerFactory.getLogger(getClass());
     
     public synchronized void handleEvent(Event event) {
         final String topic = event.getTopic();
-        AtomicInteger counter = counters.get(topic);
-        if(counter == null) {
-            counter = new AtomicInteger();
-            counters.put(topic, counter);
-        }
+        AtomicInteger counter = counters.computeIfAbsent(topic, k -> new AtomicInteger());
         counter.incrementAndGet();
         log.debug("{} counter is now {}", topic, counter.get());
     }

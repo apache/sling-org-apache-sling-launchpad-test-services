@@ -67,6 +67,7 @@ public class GetConfigServlet extends SlingSafeMethodsServlet {
         final Dictionary<?, ?> props = cfg.getProperties();
         if(props == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Properties of config with pid=" + pid + " not found");
+            return;
         }
 
         // Dump config in JSON

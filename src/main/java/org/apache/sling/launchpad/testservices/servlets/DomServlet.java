@@ -56,6 +56,9 @@ public class DomServlet extends SlingAllMethodsServlet {
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            // completely disable external entities declarations:
+            factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
             DocumentBuilder builder = factory.newDocumentBuilder();
 
             Document document = builder.parse(new InputSource(new StringReader(XML_INPUT)));
@@ -67,9 +70,7 @@ public class DomServlet extends SlingAllMethodsServlet {
 
             response.setContentType("text/plain");
             response.getWriter().write(result);
-        } catch (ParserConfigurationException e) {
-            throw new ServletException(e);
-        } catch (SAXException e) {
+        } catch (SAXException | ParserConfigurationException e) {
             throw new ServletException(e);
         }
     }

@@ -42,7 +42,7 @@ public class PlanetResource extends AbstractResource implements Resource {
     
     static class PlanetValueMap extends ValueMapDecorator {
         PlanetValueMap(String name, int distance) {
-            super(new HashMap<String, Object>());
+            super(new HashMap<>());
             put("name", name);
             put("distance", distance);
         }

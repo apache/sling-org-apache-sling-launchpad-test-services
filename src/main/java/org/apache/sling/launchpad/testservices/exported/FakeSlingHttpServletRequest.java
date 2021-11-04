@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Locale;
@@ -52,7 +53,7 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
 
     private final int port;
 
-    private final Map<String, Object> attrs = new HashMap<String, Object>();
+    private final Map<String, Object> attrs = new HashMap<>();
 
     private String contextPath;
 
@@ -91,7 +92,7 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
     }
 
     public Enumeration<String> getAttributeNames() {
-        return null;
+        return Collections.emptyEnumeration();
     }
 
     public String getCharacterEncoding() {
@@ -135,7 +136,7 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
     }
 
     public Map<String, String[]> getParameterMap() {
-        return null;
+        return Collections.emptyMap();
     }
 
     public Enumeration<String> getParameterNames() {
