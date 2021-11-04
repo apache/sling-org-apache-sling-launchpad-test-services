@@ -16,20 +16,17 @@
  */
 package org.apache.sling.launchpad.testservices.adapter;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.adapter.AdapterFactory;
+import org.osgi.service.component.annotations.Component;
 /**
  * Service which actually is an adapter factory. See SLING-2522.
  */
-@Component
-@Service(AdapterFactory.class)
-@Properties({
-    @Property(name=AdapterFactory.ADAPTABLE_CLASSES, value="org.apache.sling.api.resource.Resource"),
-    @Property(name=AdapterFactory.ADAPTER_CLASSES, value="something_which_should_appear")
-})
+@Component(
+        service = AdapterFactory.class,
+        property = {
+            AdapterFactory.ADAPTABLE_CLASSES + ":String=org.apache.sling.api.resource.Resource",
+            AdapterFactory.ADAPTER_CLASSES + ":String=something_which_should_appear"
+        })
 public class ReallyAnAdapterFactory implements AdapterFactory {
 
     public <AdapterType> AdapterType getAdapter(Object adaptable, Class<AdapterType> type) {

@@ -19,15 +19,17 @@ package org.apache.sling.launchpad.testservices.servlets;
 import java.io.IOException;
 import java.io.StringReader;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
+import org.osgi.service.component.annotations.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -38,7 +40,10 @@ import org.xml.sax.SAXException;
  * The <tt>DomServlet</tt> evaluates a simple XML document using DOM APIs.
  * 
  */
-@SlingServlet(paths = "/bin/dom", extensions = "xml")
+@Component(service=Servlet.class)
+@SlingServletPathsStrict(
+        paths = "/bin/dom",
+        extensions = "xml")
 public class DomServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 1L;

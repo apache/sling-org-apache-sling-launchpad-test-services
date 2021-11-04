@@ -18,16 +18,18 @@
  */
 package org.apache.sling.launchpad.testservices.handlers;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
 
-@Component(metatype = true)
-@Property(name = Constants.SERVICE_RANKING, intValue = 3, propertyPrivate = false)
-@Service(value = {
-        org.apache.jackrabbit.server.io.IOHandler.class,
-        org.apache.jackrabbit.server.io.PropertyHandler.class})
+@Component(
+        service = {
+                org.apache.jackrabbit.server.io.IOHandler.class,
+                org.apache.jackrabbit.server.io.PropertyHandler.class
+        },
+        property = {
+                Constants.SERVICE_RANKING + ":Integer=3"
+        }
+        )
 public class TestHandler1 extends AbstractHandler {
 
     @Override

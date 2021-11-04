@@ -16,14 +16,14 @@
  */
 package org.apache.sling.launchpad.testservices.serversidetests;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.launchpad.testservices.exported.StringTransformer;
+import org.osgi.service.component.annotations.Component;
 
-@Component
-@Service
-@Property(name="mode", value="lowercase")
+@Component(
+        property = {
+                "mode:String=lowercase"
+        }
+        )
 public class LowercaseStringTransformer implements StringTransformer {
     public String transform(String str) {
         return str.toLowerCase();

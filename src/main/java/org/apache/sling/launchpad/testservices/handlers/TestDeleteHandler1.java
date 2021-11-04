@@ -18,21 +18,16 @@
  */
 package org.apache.sling.launchpad.testservices.handlers;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
-import org.apache.jackrabbit.server.io.DeleteContext;
 import org.apache.jackrabbit.server.io.DeleteHandler;
-import org.apache.jackrabbit.webdav.DavException;
-import org.apache.jackrabbit.webdav.DavResource;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
 
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
-
-@Component(metatype = true)
-@Property(name = Constants.SERVICE_RANKING, intValue = 2, propertyPrivate = false)
-@Service(value = { DeleteHandler.class })
+@Component(
+        service = DeleteHandler.class,
+        property = {
+                Constants.SERVICE_RANKING + ":Integer=2"
+        }
+        )
 public class TestDeleteHandler1 extends AbstractDeleteHandler{
 
     public TestDeleteHandler1() {

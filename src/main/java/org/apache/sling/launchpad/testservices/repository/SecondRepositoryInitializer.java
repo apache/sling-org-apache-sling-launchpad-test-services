@@ -18,13 +18,10 @@ package org.apache.sling.launchpad.testservices.repository;
 
 import javax.jcr.Session;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.jcr.api.SlingRepository;
 import org.apache.sling.jcr.api.SlingRepositoryInitializer;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,12 +29,12 @@ import org.slf4j.LoggerFactory;
  * SlingRepositoryInitializer that adds a property to the node created by 
  * FirstRepositoryInitializer.
  */
-@Component
-@Service(SlingRepositoryInitializer.class)
-@Properties({
-    // Execute this after FirstRepositoryInitializer
-    @Property(name=Constants.SERVICE_RANKING, intValue=200)
-})
+@Component(
+        service = SlingRepositoryInitializer.class,
+        property = {
+                // Execute this after FirstRepositoryInitializer
+                Constants.SERVICE_RANKING + ":Integer=200"
+        })
 public class SecondRepositoryInitializer implements SlingRepositoryInitializer {
 
     private final Logger log = LoggerFactory.getLogger(getClass());

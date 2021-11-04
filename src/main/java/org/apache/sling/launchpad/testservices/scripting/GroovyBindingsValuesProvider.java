@@ -18,19 +18,16 @@ package org.apache.sling.launchpad.testservices.scripting;
 
 import javax.script.Bindings;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.scripting.api.BindingsValuesProvider;
+import org.osgi.service.component.annotations.Component;
 /** Example/test BindingsValuesProvider targeting groovy scripts */
-@Component(immediate=true, metatype=false)
-@Service
-@Properties({
-    @Property(name="service.description", value="Groovy BindingsValuesProvider"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="javax.script.name", value="groovy")
-})
+@Component(
+        immediate=true, 
+        property = {
+                "service.description:String=Groovy BindingsValuesProvider",
+                "service.vendor:String=The Apache Software Foundation",
+                "javax.script.name:String=groovy"
+        })
 public class GroovyBindingsValuesProvider implements BindingsValuesProvider {
 
     public void addBindings(Bindings bindings) {

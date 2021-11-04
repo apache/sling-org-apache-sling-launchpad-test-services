@@ -24,14 +24,13 @@ import java.util.List;
 
 import javax.jcr.Session;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.jcr.api.SlingRepository;
 import org.apache.sling.jcr.api.SlingRepositoryInitializer;
 import org.apache.sling.jcr.repoinit.JcrRepoInitOpsProcessor;
 import org.apache.sling.repoinit.parser.RepoInitParser;
 import org.apache.sling.repoinit.parser.operations.Operation;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,8 +39,8 @@ import org.slf4j.LoggerFactory;
  * Meant to be used for our integration tests until we can create those from
  * the provisioning model.
  */
-@Component
-@Service(SlingRepositoryInitializer.class)
+@Component(
+        service = SlingRepositoryInitializer.class)
 public class SystemUsersInitializer implements SlingRepositoryInitializer {
 
     private final Logger log = LoggerFactory.getLogger(getClass());

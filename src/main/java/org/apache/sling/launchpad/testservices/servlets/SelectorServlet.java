@@ -16,15 +16,18 @@
  */
 package org.apache.sling.launchpad.testservices.servlets;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
+import javax.servlet.Servlet;
+
+import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
+import org.osgi.service.component.annotations.Component;
 
 /** Example/test Sling Servlet registered with two selectors */
-@SlingServlet(
-        resourceTypes="sling/servlet/default",
-        methods={"GET","POST"},
-        selectors={"TEST_SEL_1","TEST_SEL_2"},
-        extensions="txt"
-        )
+@Component(service=Servlet.class)
+@SlingServletResourceTypes(
+        resourceTypes = "sling/servlet/default",
+        methods = {"GET","POST"},
+        selectors = {"TEST_SEL_1","TEST_SEL_2"},
+        extensions = "txt")
 @SuppressWarnings("serial")
 public class SelectorServlet extends TestServlet {
 }

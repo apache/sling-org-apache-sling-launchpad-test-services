@@ -18,18 +18,15 @@ package org.apache.sling.launchpad.testservices.scripting;
 
 import javax.script.Bindings;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.scripting.api.BindingsValuesProvider;
+import org.osgi.service.component.annotations.Component;
 /** Example/test BindingsValuesProvider targeting all scripts */
-@Component(immediate=true, metatype=false)
-@Service
-@Properties({
-    @Property(name="service.description", value="StringBindingsValuesProvider"),
-    @Property(name="service.vendor", value="The Apache Software Foundation")
-})
+@Component(
+        immediate=true, 
+        property = {
+                "service.description:String=StringBindingsValuesProvider",
+                "service.vendor:String=The Apache Software Foundation"
+        })
 public class StringBindingsValuesProvider implements BindingsValuesProvider {
 
     public void addBindings(Bindings bindings) {

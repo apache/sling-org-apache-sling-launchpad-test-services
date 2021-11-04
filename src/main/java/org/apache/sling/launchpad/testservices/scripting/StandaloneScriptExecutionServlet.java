@@ -21,30 +21,28 @@ import java.io.StringWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.scripting.SlingBindings;
 import org.apache.sling.api.scripting.SlingScript;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Test Servlet that executes a named script in standalone mode, i.e.
  * without a request or response. 
  */
 
-@Component(immediate=true, metatype=false)
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="StandaloneScriptExecutionServlet Test Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.resourceTypes", value="sling/servlet/default"),
-    @Property(name="sling.servlet.selectors", value = "StandaloneScriptExecutionServlet"),
-    @Property(name="sling.servlet.extensions",value = "txt")
-})
+@Component(
+        immediate=true, 
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=StandaloneScriptExecutionServlet Test Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.resourceTypes:String=sling/servlet/default",
+                "sling.servlet.selectors:String=StandaloneScriptExecutionServlet",
+                "sling.servlet.extensions:String=txt"
+        })
 @SuppressWarnings("serial")
 public class StandaloneScriptExecutionServlet extends SlingSafeMethodsServlet {
 

@@ -22,10 +22,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.SyntheticResource;
 import org.apache.sling.api.resource.ValueMap;
@@ -33,6 +29,7 @@ import org.apache.sling.launchpad.testservices.resourceprovider.PlanetsResourceP
 import org.apache.sling.spi.resource.provider.ResolveContext;
 import org.apache.sling.spi.resource.provider.ResourceContext;
 import org.apache.sling.spi.resource.provider.ResourceProvider;
+import org.osgi.service.component.annotations.Component;
 
 /** Test/example ResourceProvider that provides info about
  *  the Solar System's planets at /planets. 
@@ -42,12 +39,12 @@ import org.apache.sling.spi.resource.provider.ResourceProvider;
  *  If you need an example based on the old ResourceProvider interface,
  *  see this code at svn revision 1727946.
  */
-@Component
-@Service(value=ResourceProvider.class)
-@Properties({ 
-    @Property(name = ResourceProvider.PROPERTY_NAME, value = "Planets"),
-    @Property(name = ResourceProvider.PROPERTY_ROOT, value=PlanetsResourceProvider.ROOT)
-})
+@Component(
+        service = ResourceProvider.class,
+        property = {
+                ResourceProvider.PROPERTY_NAME + ":String=Planets",
+                ResourceProvider.PROPERTY_ROOT + ":String=" + PlanetsResourceProvider.ROOT
+        })
 public class PlanetsResourceProvider extends ResourceProvider<DoesNotNeedAContext> {
 
     /** Our planet data. PlanetResource is created when resolving, as

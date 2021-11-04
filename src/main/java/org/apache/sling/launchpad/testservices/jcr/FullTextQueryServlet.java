@@ -28,24 +28,20 @@ import javax.jcr.query.QueryResult;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
 
 /** Servlet used to test HtmlResponse escaping */
-@Component(immediate=true, metatype=false)
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="FullText Query Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.paths", value={
-            "/testing/fullTextQuery"
-    })
-})
+@Component(
+        immediate=true, 
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=FullText Query Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.paths:String=/testing/fullTextQuery"
+        })
 /**
  * Outputs paths of nodes matching the specified full-text search
  * 

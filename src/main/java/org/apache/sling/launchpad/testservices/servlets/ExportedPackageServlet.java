@@ -21,27 +21,25 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.packageadmin.ExportedPackage;
 import org.osgi.service.packageadmin.PackageAdmin;
 
 /** Test servlet for SLING-2808 */
-@Component(immediate=true, metatype=false)
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="Exported packages Test Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.resourceTypes", value="sling/servlet/default"),
-    @Property(name="sling.servlet.selectors", value="EXPORTED_PACKAGES"),
-    @Property(name="sling.servlet.extensions", value="txt")
-})
+@Component(
+        immediate=true, 
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=Exported packages Test Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.resourceTypes:String=sling/servlet/default",
+                "sling.servlet.selectors:String=EXPORTED_PACKAGES",
+                "sling.servlet.extensions:String=txt"
+        })
 @SuppressWarnings("serial")
 public class ExportedPackageServlet extends SlingSafeMethodsServlet {
     @Reference

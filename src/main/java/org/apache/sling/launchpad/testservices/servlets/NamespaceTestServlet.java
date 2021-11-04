@@ -20,19 +20,21 @@ import java.io.IOException;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletPaths;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Test Servlet which outputs the current namespace mappings.
  */
-@SlingServlet(
-        paths="/testing/NamespaceTestServlet/output"
-        )
+@Component(service=Servlet.class)
+@SlingServletPaths(
+        value = "/testing/NamespaceTestServlet/output")
 @SuppressWarnings("serial")
 public class NamespaceTestServlet extends SlingSafeMethodsServlet {
 

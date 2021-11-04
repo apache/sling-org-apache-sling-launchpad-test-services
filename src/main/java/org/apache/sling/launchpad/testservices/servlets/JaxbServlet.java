@@ -20,22 +20,27 @@ package org.apache.sling.launchpad.testservices.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * The <tt>JaxbServlet</tt> serializes a basic JAXB-annotated class
  * 
  */
-@SlingServlet(paths = "/bin/jaxb", extensions = "xml")
+@Component(service=Servlet.class)
+@SlingServletPathsStrict(
+        paths = "/bin/jaxb",
+        extensions = "xml")
 public class JaxbServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 1L;

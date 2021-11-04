@@ -16,19 +16,17 @@
  */
 package org.apache.sling.launchpad.testservices.filters;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Component;
 
 /** Example/test filter */
-@Component(metatype=false)
-@Service(value=javax.servlet.Filter.class)
-@Properties({
-    @Property(name="service.description", value="NoProperty Test Filter"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.filter.scope", value="request")
-})
+@Component(
+        service = javax.servlet.Filter.class,
+        property = {
+            "service.description:String=NoProperty Test Filter",
+            "service.vendor:String=The Apache Software Foundation",
+            "sling.filter.scope:String=request"
+        }
+        )
 public class NoPropertyFilter extends TestFilter {
 
     @Override

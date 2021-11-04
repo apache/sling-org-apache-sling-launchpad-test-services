@@ -18,18 +18,17 @@ package org.apache.sling.launchpad.testservices.post;
 
 import java.util.List;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.servlets.post.Modification;
 import org.apache.sling.servlets.post.SlingPostProcessor;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
 
 /** Example SlingPostProcessor used in integration tests */
-@Component
-@Service
-@Property(name=Constants.SERVICE_RANKING, intValue=1)
+@Component(
+        property = {
+                Constants.SERVICE_RANKING + ":Integer=1"
+        })
 public class SlingPostProcessorTwo implements SlingPostProcessor {
     @Override
     public void process(SlingHttpServletRequest request, List<Modification> mods)
