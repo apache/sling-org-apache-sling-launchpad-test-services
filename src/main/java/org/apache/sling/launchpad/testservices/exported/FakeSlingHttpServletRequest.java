@@ -360,7 +360,7 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
 
     @Override
     public Collection<Part> getParts() throws IOException, ServletException {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

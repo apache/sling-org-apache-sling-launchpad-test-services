@@ -59,11 +59,13 @@ public class SystemUsersInitializer implements SlingRepositoryInitializer {
         final Session s = repo.loginAdministrative(null);
         final InputStream is = getClass().getResourceAsStream(REPOINIT_FILE);
         try {
-            if(is == null) {
+            if (is == null) {
                 throw new IOException("Class Resource not found:" + REPOINIT_FILE);
             }
-            final Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
-            final List<Operation> ops = parser.parse(r); 
+            final List<Operation> ops; 
+            try (final Reader r = new InputStreamReader(is, StandardCharsets.UTF_8)) {
+                ops = parser.parse(r); 
+            }
             log.info("Executing {} repoinit Operations", ops.size());
             processor.apply(s, ops);
             s.save();
