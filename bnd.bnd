@@ -1,11 +1,3 @@
-Export-Package:\
-  org.apache.sling.launchpad.testservices.exported,\
-  org.apache.sling.launchpad.testservices.models,\
-  org.apache.sling.launchpad.testservices.events
-
-Private-Package:\
-  org.apache.sling.launchpad.testservices.*
-
 Sling-Nodetypes:\
   SLING-INF/nodetypes/test.cnd
 
