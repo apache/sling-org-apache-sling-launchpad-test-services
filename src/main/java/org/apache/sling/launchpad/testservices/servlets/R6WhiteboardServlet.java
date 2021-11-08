@@ -23,21 +23,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Example Sling servlets registered using the R6 HTTP Whiteboard
  *
  */
-@Service(javax.servlet.Servlet.class)
-@Component
-@Properties({
-    @Property(name="osgi.http.whiteboard.servlet.pattern", value="/whiteboard_r6"),
-    @Property(name="osgi.http.whiteboard.context.select", value="(osgi.http.whiteboard.context.name=org.apache.sling)"),
-})
+@Component(
+        service = javax.servlet.Servlet.class,
+        property = {
+                "osgi.http.whiteboard.servlet.pattern:String=/whiteboard_r6",
+                "osgi.http.whiteboard.context.select:String=(osgi.http.whiteboard.context.name=org.apache.sling)"
+        })
 public class R6WhiteboardServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

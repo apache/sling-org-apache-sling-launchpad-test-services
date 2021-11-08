@@ -16,19 +16,15 @@
  */
 package org.apache.sling.launchpad.testservices.serversidetests;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.launchpad.testservices.exported.StringTransformer;
+import org.osgi.service.component.annotations.Component;
 
-@Component
-@Service
-@Properties({
-    @Property(name="mode", value="lowercase"),
-    @Property(name="service.ranking", intValue=-10)
-})
-
+@Component(
+        property = {
+                "mode:String=lowercase",
+                "service.ranking:Integer=-10"
+        }
+        )
 public class LowerRankingStringTransformer implements StringTransformer {
     public String transform(String str) {
         throw new UnsupportedOperationException("This " + getClass().getSimpleName() + " shouldn't be called in tests due to lower ranking");

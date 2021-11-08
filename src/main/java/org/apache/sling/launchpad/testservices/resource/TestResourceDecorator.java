@@ -18,22 +18,20 @@ package org.apache.sling.launchpad.testservices.resource;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceDecorator;
 import org.apache.sling.api.resource.ResourceWrapper;
+import org.osgi.service.component.annotations.Component;
 
 /** Test ResourceDecorator that sets a specific resource type
  *  for resources having a path that starts
  *  with /testing + simple name of this class + /
  */
 @Component
-@Service
 public class TestResourceDecorator implements ResourceDecorator {
 
     private final String PATH = "/testing/" + getClass().getSimpleName() + "/";
-    private final String RESOURCE_TYPE = "TEST_RESOURCE_DECORATOR_RESOURCE_TYPE";
+    private static final String RESOURCE_TYPE = "TEST_RESOURCE_DECORATOR_RESOURCE_TYPE";
     
     public Resource decorate(Resource resource, HttpServletRequest request) {
         return decorate(resource);

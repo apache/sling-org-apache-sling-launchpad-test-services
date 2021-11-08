@@ -16,25 +16,22 @@
  */
 package org.apache.sling.launchpad.testservices.servlets;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.servlets.OptingServlet;
+import org.osgi.service.component.annotations.Component;
 
 /** OptingServlet that uses the RequestURI to opt in */
-@Component(immediate=true, metatype=false)
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="Request URI Opting Test Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.resourceTypes", value={
-            "sling/servlet/default",
-            "sling/nonexisting"
-    }),
-    @Property(name="sling.servlet.methods", value={"POST","GET"})
-})
+@Component(
+        immediate=true, 
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=Request URI Opting Test Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.resourceTypes:String=sling/servlet/default",
+                "sling.servlet.resourceTypes:String=sling/nonexisting",
+                "sling.servlet.methods:String=POST",
+                "sling.servlet.methods:String=GET",
+        })
 @SuppressWarnings("serial")
 public class RequestUriOptingServlet extends TestServlet implements OptingServlet {
 

@@ -19,20 +19,20 @@ package org.apache.sling.launchpad.testservices.post;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.servlets.post.PostOperation;
 import org.apache.sling.servlets.post.PostResponse;
 import org.apache.sling.servlets.post.SlingPostProcessor;
+import org.osgi.service.component.annotations.Component;
 
 /** Example PostOperation used in integration tests */
-@Component(immediate=true)
-@Service
-@Property(name=PostOperation.PROP_OPERATION_NAME, value="test:SlingPostOperationExample")
+@Component(
+        immediate=true,
+        property = {
+                PostOperation.PROP_OPERATION_NAME + ":String=test:SlingPostOperationExample"
+        })
 public class SlingPostOperationExample implements PostOperation {
     public void run(SlingHttpServletRequest request, PostResponse response, SlingPostProcessor[] processors) {
         final Resource r = request.getResource();

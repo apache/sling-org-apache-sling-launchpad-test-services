@@ -21,22 +21,27 @@ package org.apache.sling.launchpad.testservices.servlets;
 import java.io.IOException;
 import java.io.StringReader;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
+import org.osgi.service.component.annotations.Component;
 import org.xml.sax.InputSource;
 
 /**
  * The <tt>XpathServlet</tt> evaluates a simple XML document using an XPath expression
  * 
  */
-@SlingServlet(paths = "/bin/xpath", extensions = "xml")
+@Component(service=Servlet.class)
+@SlingServletPathsStrict(
+        paths = "/bin/xpath",
+        extensions = "xml")
 public class XpathServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 1L;

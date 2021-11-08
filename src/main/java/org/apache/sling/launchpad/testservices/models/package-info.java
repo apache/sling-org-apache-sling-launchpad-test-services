@@ -16,23 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.sling.launchpad.testservices.handlers;
 
-import org.apache.jackrabbit.server.io.DeleteHandler;
-import org.osgi.framework.Constants;
-import org.osgi.service.component.annotations.Component;
-
-@Component(
-        service = DeleteHandler.class,
-        property = {
-                Constants.SERVICE_RANKING + ":Integer=2"
-        }
-        )
-public class TestDeleteHandler1 extends AbstractDeleteHandler{
-
-    public TestDeleteHandler1() {
-        this.HANDLER_NAME = "test-delete-handler-1";
-        this.HANDLER_BKP = "backed-up-by-" + HANDLER_NAME;
-    }
-
-}
+@org.osgi.annotation.versioning.Version("2.0.16")
+package org.apache.sling.launchpad.testservices.models;

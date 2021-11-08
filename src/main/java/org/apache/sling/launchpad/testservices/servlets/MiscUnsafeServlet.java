@@ -20,18 +20,23 @@ package org.apache.sling.launchpad.testservices.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Validates that the <tt>sun.misc.Unsafe</tt> class can be accessed
  *
  */
-@SlingServlet(paths = "/bin/miscUnsafe", extensions = "txt")
+@Component(service=Servlet.class)
+@SlingServletPathsStrict(
+        paths = "/bin/miscUnsafe",
+        extensions = "txt")
 public class MiscUnsafeServlet extends SlingAllMethodsServlet {
     
     private static final long serialVersionUID = 1L;

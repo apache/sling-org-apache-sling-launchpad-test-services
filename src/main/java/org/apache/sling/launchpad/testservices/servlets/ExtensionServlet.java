@@ -16,20 +16,19 @@
  */
 package org.apache.sling.launchpad.testservices.servlets;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Component;
 
 /** Example/test Sling Servlet registered with two extensions */
-@Component(immediate=true, metatype=false)
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="Extension Test Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.resourceTypes", value="sling/servlet/default"),
-    @Property(name="sling.servlet.extensions", value={ "TEST_EXT_1", "TEST_EXT_2" })
-})
+@Component(
+        immediate=true, 
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=Extension Test Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.resourceTypes:String=sling/servlet/default",
+                "sling.servlet.extensions:String=TEST_EXT_1",
+                "sling.servlet.extensions:String=TEST_EXT_2"
+        })
 @SuppressWarnings("serial")
 public class ExtensionServlet extends TestServlet {
 }

@@ -24,14 +24,11 @@ import javax.jcr.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.jackrabbit.commons.JcrUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Servlet which can create and delete a node at /testing/PathsServlet/foo in
@@ -39,11 +36,13 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
  * exists.
  */
 @SuppressWarnings("serial")
-@Component
-@Service
-@Properties({ @Property(name = "service.description", value = "Paths Servlet Node Servlet"),
-        @Property(name = "service.vendor", value = "The Apache Software Foundation"),
-        @Property(name = "sling.servlet.paths", value = "/testing/PathsServletNodeServlet") })
+@Component(
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=Paths Servlet Node Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.paths:String=/testing/PathsServletNodeServlet"
+        })
 public class PathsServletNodeServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException,

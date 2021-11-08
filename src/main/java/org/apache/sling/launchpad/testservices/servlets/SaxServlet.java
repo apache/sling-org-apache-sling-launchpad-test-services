@@ -21,16 +21,17 @@ package org.apache.sling.launchpad.testservices.servlets;
 import java.io.IOException;
 import java.io.StringReader;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.xpath.XPathExpressionException;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
+import org.osgi.service.component.annotations.Component;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -40,7 +41,10 @@ import org.xml.sax.helpers.DefaultHandler;
  * The <tt>SaxServlet</tt> evaluates a simple XML document using a SAX handler
  * 
  */
-@SlingServlet(paths = "/bin/sax", extensions = "xml")
+@Component(service=Servlet.class)
+@SlingServletPathsStrict(
+        paths = "/bin/sax",
+        extensions = "xml")
 public class SaxServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 1L;
@@ -60,9 +64,7 @@ public class SaxServlet extends SlingAllMethodsServlet {
 
             response.setContentType("text/plain");
             response.getWriter().write(handler.getValue());
-        } catch (ParserConfigurationException e) {
-            throw new ServletException(e.getMessage(), e);
-        } catch (SAXException e) {
+        } catch (SAXException | ParserConfigurationException e) {
             throw new ServletException(e.getMessage(), e);
         }
     }

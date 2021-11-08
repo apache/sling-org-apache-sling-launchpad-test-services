@@ -23,15 +23,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.felix.utils.json.JSONWriter;
 import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 import org.slf4j.Logger;
@@ -41,32 +38,30 @@ import org.slf4j.LoggerFactory;
  *  report them to clients.
  */
 @SuppressWarnings("serial")
-@Component(immediate=true, metatype=false)
-@Service
-@Properties({
-    @Property(name="service.description", value="Paths Test Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.paths", value="/testing/EventsCounter"), 
-    @Property(name="sling.servlet.extensions", value="json"), 
-    @Property(
-            name=org.osgi.service.event.EventConstants.EVENT_TOPIC,
-            value= {
-                    SlingConstants.TOPIC_RESOURCE_ADDED,
-                    SlingConstants.TOPIC_RESOURCE_RESOLVER_MAPPING_CHANGED
-            })
-})
+@Component(
+        immediate=true,
+        service = {
+                javax.servlet.Servlet.class,
+                org.osgi.service.event.EventHandler.class,
+                org.apache.sling.launchpad.testservices.events.EventsCounter.class
+        },
+        property = {
+            "service.description:String=Paths Test Servlet",
+            "service.vendor:String=The Apache Software Foundation",
+            "sling.servlet.paths:String=/testing/EventsCounter", 
+            "sling.servlet.extensions:String=json", 
+            org.osgi.service.event.EventConstants.EVENT_TOPIC + ":String=" + SlingConstants.TOPIC_RESOURCE_ADDED,
+            org.osgi.service.event.EventConstants.EVENT_TOPIC + ":String=" + SlingConstants.TOPIC_RESOURCE_RESOLVER_MAPPING_CHANGED
+        }
+)
 public class EventsCounterImpl extends SlingSafeMethodsServlet implements EventHandler,EventsCounter {
 
-    private final Map<String, AtomicInteger> counters = new HashMap<String, AtomicInteger>();
+    private final Map<String, AtomicInteger> counters = new HashMap<>();
     private final Logger log = LoggerFactory.getLogger(getClass());
     
     public synchronized void handleEvent(Event event) {
         final String topic = event.getTopic();
-        AtomicInteger counter = counters.get(topic);
-        if(counter == null) {
-            counter = new AtomicInteger();
-            counters.put(topic, counter);
-        }
+        AtomicInteger counter = counters.computeIfAbsent(topic, k -> new AtomicInteger());
         counter.incrementAndGet();
         log.debug("{} counter is now {}", topic, counter.get());
     }

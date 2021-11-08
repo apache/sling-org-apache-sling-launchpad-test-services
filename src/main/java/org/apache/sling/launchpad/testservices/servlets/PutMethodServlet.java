@@ -20,24 +20,22 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.osgi.service.component.annotations.Component;
 
 /** Example/test Sling Servlet registered for the PUT method
  *  on a specific resource type
 */
-@Component(immediate=true, metatype=false)
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="Put Method Test Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.methods", value="PUT"),
-    @Property(name="sling.servlet.resourceTypes", value="LAUNCHPAD_TEST_ResourceType")
-})
+@Component(
+        immediate=true, 
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=Put Method Test Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.methods:String=PUT",
+                "sling.servlet.resourceTypes:String=LAUNCHPAD_TEST_ResourceType"
+        })
 @SuppressWarnings("serial")
 public class PutMethodServlet extends TestServlet {
 

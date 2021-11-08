@@ -16,11 +16,8 @@
  */
 package org.apache.sling.launchpad.testservices.servlets;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.ConfigurationPolicy;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 
 /**
  * Default servlet for the html extension, see SLING-1069.
@@ -29,15 +26,17 @@ import org.apache.felix.scr.annotations.Service;
  * disabled by default and must be enabled (by creating a config) for testing 
  * in the HtmlDefaultServletTest class.
  */
-@Component(immediate=true, metatype=true, policy=ConfigurationPolicy.REQUIRE)
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="HTML Default Test Servlet",propertyPrivate=true),
-    @Property(name="service.vendor", value="The Apache Software Foundation",propertyPrivate=true),
-    @Property(name="sling.servlet.resourceTypes", value="sling/servlet/default",propertyPrivate=true),
-    @Property(name="sling.servlet.extensions", value="html",propertyPrivate=true),
-    @Property(name="sling.servlet.methods", value="GET")
-})
+@Component(
+        immediate=true, 
+        service = javax.servlet.Servlet.class, 
+        configurationPolicy = ConfigurationPolicy.REQUIRE,
+        property = {
+                "service.description:String=HTML Default Test Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.resourceTypes:String=sling/servlet/default",
+                "sling.servlet.extensions:String=html",
+                "sling.servlet.methods:String=GET"
+        })
 @SuppressWarnings("serial")
 public class HtmlDefaultServlet extends TestServlet {
 }

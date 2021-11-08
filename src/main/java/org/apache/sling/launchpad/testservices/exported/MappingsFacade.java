@@ -32,7 +32,7 @@ public class MappingsFacade {
     
     // How long to wait for mapping updates
     public static final String MAPPING_UPDATE_TIMEOUT_MSEC = "ResourceResolverTest.mapping.update.timeout.msec";
-    private static final long updateTimeout = Long.valueOf(System.getProperty(MAPPING_UPDATE_TIMEOUT_MSEC, "10000"));
+    private static final long updateTimeout = Long.parseLong(System.getProperty(MAPPING_UPDATE_TIMEOUT_MSEC, "10000"));
 
     public MappingsFacade(EventsCounter c) {
         if(firstInstance) {

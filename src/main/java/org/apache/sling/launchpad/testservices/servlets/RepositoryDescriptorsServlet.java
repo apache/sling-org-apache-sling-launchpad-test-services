@@ -17,29 +17,28 @@
 package org.apache.sling.launchpad.testservices.servlets;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.jcr.Repository;
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.felix.utils.json.JSONWriter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /** Test servlet that dumps our repository descriptors */ 
 @SuppressWarnings("serial")
-@Component(immediate = true)
-@Service
-@Properties({ @Property(name = "service.description", value = "Repository Descriptors Servlet"),
-        @Property(name = "service.vendor", value = "The Apache Software Foundation"),
-        @Property(name = "sling.servlet.paths", value = "/testing/RepositoryDescriptors"),
-        @Property(name = "sling.servlet.extensions", value = "json")})
+@Component(
+        immediate = true,
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=Repository Descriptors Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.paths:String=/testing/RepositoryDescriptors",
+                "sling.servlet.extensions:String=json"
+        })
 public class RepositoryDescriptorsServlet extends SlingSafeMethodsServlet {
 
     @Reference

@@ -69,7 +69,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
     private Node rootNode;
     private Node mapRoot;
     private String [] vanity;
-    private static List<String> toDelete = new ArrayList<String>();
+    private static List<String> toDelete = new ArrayList<>();
     private static ResourceResolverFactory cleanupResolverFactory;
     private MappingsFacade mappingsFacade;
     
@@ -192,7 +192,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
         anon1.close();
 
         // same workspace but admin user
-        final Map<String, Object> admin0Cred = new HashMap<String, Object>();
+        final Map<String, Object> admin0Cred = new HashMap<>();
         admin0Cred.put(ResourceResolverFactory.USER, "admin");
         admin0Cred.put(ResourceResolverFactory.PASSWORD, "admin".toCharArray());
         final ResourceResolver admin0 = anon0.clone(admin0Cred);
@@ -203,13 +203,13 @@ public class ResourceResolverWithVanityBloomFilterTest {
         admin0.close();
 
         // same user but different workspace
-        final Map<String, Object> anon2Cred = new HashMap<String, Object>();
+        final Map<String, Object> anon2Cred = new HashMap<>();
         final ResourceResolver anon2 = anon0.clone(anon2Cred);
         assertEquals("anonymous", anon2.getUserID());
         anon2.close();
 
         // different user and workspace
-        final Map<String, Object> admin1Cred = new HashMap<String, Object>();
+        final Map<String, Object> admin1Cred = new HashMap<>();
         admin1Cred.put(ResourceResolverFactory.USER, "admin");
         admin1Cred.put(ResourceResolverFactory.PASSWORD, "admin".toCharArray());
         final ResourceResolver admin1 = anon0.clone(admin1Cred);
@@ -233,7 +233,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
         admin1.close();
 
         // same workspace but anonymous user
-        final Map<String, Object> anon0Cred = new HashMap<String, Object>();
+        final Map<String, Object> anon0Cred = new HashMap<>();
         anon0Cred.put(ResourceResolverFactory.USER, "anonymous");
         final ResourceResolver anon0 = admin0.clone(anon0Cred);
         final Session anon0Session = anon0.adaptTo(Session.class);
@@ -243,13 +243,13 @@ public class ResourceResolverWithVanityBloomFilterTest {
         anon0.close();
 
         // same user but different workspace
-        final Map<String, Object> admin2Cred = new HashMap<String, Object>();
+        final Map<String, Object> admin2Cred = new HashMap<>();
         final ResourceResolver admin2 = admin0.clone(admin2Cred);
         assertEquals("admin", admin2.getUserID());
         admin2.close();
 
         // different user and workspace
-        final Map<String, Object> anon1Cred = new HashMap<String, Object>();
+        final Map<String, Object> anon1Cred = new HashMap<>();
         anon1Cred.put(ResourceResolverFactory.USER, "anonymous");
         final ResourceResolver anon1 = admin0.clone(anon1Cred);
         assertEquals("anonymous", anon1.getUserID());
@@ -326,7 +326,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
     }*/
 
     @Test public void test_attributes_from_authInfo() throws Exception {
-        final Map<String, Object> authInfo = new HashMap<String, Object>();
+        final Map<String, Object> authInfo = new HashMap<>();
         authInfo.put(ResourceResolverFactory.USER, "admin");
         authInfo.put(ResourceResolverFactory.PASSWORD, "admin".toCharArray());
         authInfo.put("testAttributeString", "AStringValue");
@@ -347,7 +347,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             assertEquals("admin", rr.getAttribute(ResourceResolverFactory.USER));
             assertNull(rr.getAttribute(ResourceResolverFactory.PASSWORD));
 
-            final HashSet<String> validNames = new HashSet<String>();
+            final HashSet<String> validNames = new HashSet<>();
             validNames.add(ResourceResolverFactory.USER);
             validNames.add("testAttributeString");
             validNames.add("testAttributeNumber");

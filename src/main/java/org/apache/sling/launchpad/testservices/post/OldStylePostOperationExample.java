@@ -19,23 +19,20 @@ package org.apache.sling.launchpad.testservices.post;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HtmlResponse;
 import org.apache.sling.servlets.post.SlingPostOperation;
 import org.apache.sling.servlets.post.SlingPostProcessor;
+import org.osgi.service.component.annotations.Component;
 
 /** Example using the now deprecated SlingPostOperation */
-@Component(immediate=true)
-@Service
-@Properties({
-    @Property(name=SlingPostOperation.PROP_OPERATION_NAME, value="test:OldStylePostOperationExample")
-})
+@Component(
+        immediate=true,
+        property = {
+                SlingPostOperation.PROP_OPERATION_NAME + ":String=test:OldStylePostOperationExample"
+        })
 public class OldStylePostOperationExample implements SlingPostOperation {
 
     public void run(SlingHttpServletRequest request, HtmlResponse response, SlingPostProcessor[] processors) {

@@ -20,18 +20,16 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.servlets.post.AbstractPostResponse;
 import org.apache.sling.servlets.post.PostResponse;
 import org.apache.sling.servlets.post.PostResponseCreator;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Sample implementation of the PostResponseCreator interface.
  */
 @Component
-@Service
 public class CustomPostResponseCreatorImpl implements PostResponseCreator {
 
     public PostResponse createPostResponse(SlingHttpServletRequest req) {

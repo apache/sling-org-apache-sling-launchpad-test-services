@@ -17,35 +17,31 @@
 package org.apache.sling.launchpad.testservices.servlets;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.felix.utils.json.JSONWriter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /** GET returns the contents of an OSGi config by PID */
 @SuppressWarnings("serial")
-@Component
-@Service
-@Properties({
-    @Property(name="service.description", value="GetConfig Test Servlet"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.paths",value="/testing/GetConfigServlet"),
-    @Property(name="sling.servlet.extensions",value="json")
-})
+@Component(
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=GetConfig Test Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.paths:String=/testing/GetConfigServlet",
+                "sling.servlet.extensions:String=json"
+        })
 public class GetConfigServlet extends SlingSafeMethodsServlet {
 
     @Reference
@@ -71,6 +67,7 @@ public class GetConfigServlet extends SlingSafeMethodsServlet {
         final Dictionary<?, ?> props = cfg.getProperties();
         if(props == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Properties of config with pid=" + pid + " not found");
+            return;
         }
 
         // Dump config in JSON

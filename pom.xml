@@ -22,13 +22,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.apache.sling</groupId>
-        <artifactId>sling</artifactId>
-        <version>26</version>
+        <artifactId>sling-bundle-parent</artifactId>
+        <version>46</version>
         <relativePath />
     </parent>
 
     <artifactId>org.apache.sling.launchpad.test-services</artifactId>
-    <packaging>bundle</packaging>
     <version>12-SNAPSHOT</version>
 
     <name>Apache Sling Launchpad Testing Services</name>
@@ -43,50 +42,11 @@
       <tag>HEAD</tag>
   </scm>
 
+    <properties>
+        <project.build.outputTimestamp>2021-07-16T18:32:08Z</project.build.outputTimestamp>
+    </properties>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-scr-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Export-Package>
-                          org.apache.sling.launchpad.testservices.exported,
-                          org.apache.sling.launchpad.testservices.models,
-                          org.apache.sling.launchpad.testservices.events
-                        </Export-Package>
-                        <Private-Package>
-                            org.apache.sling.launchpad.testservices.*
-                        </Private-Package>
-                        <Sling-Nodetypes>
-                            SLING-INF/nodetypes/test.cnd
-                        </Sling-Nodetypes>
-                        <Sling-Initial-Content>
-                            SLING-INF/content;path:=/sling-test;overwrite=true;uninstall=true,
-                            SLING-INF/install;path:=/apps/sling-test/install;overwrite=true;uninstall=true,
-                            SLING-INF/root;path:=/;overwrite=false;uninstall=false,
-                        </Sling-Initial-Content>
-                        <Sling-Bundle-Resources>
-                            /sling-test/sling/from-bundle;path:=/SLING-INF/res/sling-test/sling/from-bundle,
-                            /system;path:=/SLING-INF/res/sling-test/sling/SLING-1733
-                        </Sling-Bundle-Resources>
-                        <Sling-Test-Regexp>
-                            org.apache.sling.launchpad.testservices.serversidetests.*Test
-                        </Sling-Test-Regexp>
-                        <Embed-Dependency>
-                        org.apache.felix.utils;inline=org/apache/felix/utils/json/JSONWriter.class
-                    </Embed-Dependency>
-                        <Sling-Model-Packages>
-                          org.apache.sling.launchpad.testservices.models
-                        </Sling-Model-Packages>
-                    </instructions>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.rat</groupId>
                 <artifactId>apache-rat-plugin</artifactId>
@@ -99,19 +59,6 @@
                         <exclude>src/main/resources/SLING-INF/install/org.apache.sling.scripting.jsp.JspScriptEngineFactory.json</exclude>
                     </excludes>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.sling</groupId>
-                <artifactId>maven-sling-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-adapter-metadata</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>generate-adapter-metadata</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -135,13 +82,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.scr.annotations</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -182,11 +124,7 @@
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.compendium</artifactId>
+            <artifactId>org.osgi.service.component.annotations</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -195,7 +133,6 @@
         <dependency>
             <groupId>javax.jcr</groupId>
             <artifactId>jcr</artifactId>
-            <version>2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
@@ -220,11 +157,23 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>org.apache.felix.utils</artifactId>
-        <version>1.9.0</version>
-        <scope>provided</scope>
-    </dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.utils</artifactId>
+            <version>1.9.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.specs</groupId>
+            <artifactId>org.apache.servicemix.specs.jaxb-api-2.2</artifactId>
+            <version>2.9.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.servlets.annotations</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        
     </dependencies>
 
 </project>

@@ -17,17 +17,29 @@
 package org.apache.sling.launchpad.testservices.exported;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.security.Principal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.AsyncContext;
+import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpUpgradeHandler;
+import javax.servlet.http.Part;
 
 public class FakeSlingHttpServletRequest implements HttpServletRequest {
 
@@ -41,7 +53,7 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
 
     private final int port;
 
-    private final Map<String, Object> attrs = new HashMap<String, Object>();
+    private final Map<String, Object> attrs = new HashMap<>();
 
     private String contextPath;
 
@@ -79,8 +91,8 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
         return attrs.get(name);
     }
 
-    public Enumeration<?> getAttributeNames() {
-        return null;
+    public Enumeration<String> getAttributeNames() {
+        return Collections.emptyEnumeration();
     }
 
     public String getCharacterEncoding() {
@@ -115,7 +127,7 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
         return null;
     }
 
-    public Enumeration<?> getLocales() {
+    public Enumeration<Locale> getLocales() {
         return null;
     }
 
@@ -123,11 +135,11 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
         return null;
     }
 
-    public Map<?, ?> getParameterMap() {
-        return null;
+    public Map<String, String[]> getParameterMap() {
+        return Collections.emptyMap();
     }
 
-    public Enumeration<?> getParameterNames() {
+    public Enumeration<String> getParameterNames() {
         return null;
     }
 
@@ -209,11 +221,11 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
         return null;
     }
 
-    public Enumeration<?> getHeaderNames() {
+    public Enumeration<String> getHeaderNames() {
         return null;
     }
 
-    public Enumeration<?> getHeaders(String name) {
+    public Enumeration<String> getHeaders(String name) {
         return null;
     }
 
@@ -284,4 +296,81 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
     public boolean isUserInRole(String role) {
         return false;
     }
+
+    @Override
+    public long getContentLengthLong() {
+        return -1;
+    }
+
+    @Override
+    public ServletContext getServletContext() {
+        return null;
+    }
+
+    @Override
+    public AsyncContext startAsync() throws IllegalStateException {
+        return null;
+    }
+
+    @Override
+    public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)
+            throws IllegalStateException {
+        return null;
+    }
+
+    @Override
+    public boolean isAsyncStarted() {
+        return false;
+    }
+
+    @Override
+    public boolean isAsyncSupported() {
+        return false;
+    }
+
+    @Override
+    public AsyncContext getAsyncContext() {
+        return null;
+    }
+
+    @Override
+    public DispatcherType getDispatcherType() {
+        return null;
+    }
+
+    @Override
+    public String changeSessionId() {
+        return null;
+    }
+
+    @Override
+    public boolean authenticate(HttpServletResponse response) throws IOException, ServletException {
+        return false;
+    }
+
+    @Override
+    public void login(String username, String password) throws ServletException {
+        //no-op
+    }
+
+    @Override
+    public void logout() throws ServletException {
+        //no-op
+    }
+
+    @Override
+    public Collection<Part> getParts() throws IOException, ServletException {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Part getPart(String name) throws IOException, ServletException {
+        return null;
+    }
+
+    @Override
+    public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException {
+        return null;
+    }
+
 }

@@ -21,27 +21,24 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Test HTML rendering of resources provided by our PlanetResourceProvider
  */
-@Component
-@Service(value=javax.servlet.Servlet.class)
-@Properties({
-    @Property(name="service.description", value="HTML renderer for Planet resources"),
-    @Property(name="service.vendor", value="The Apache Software Foundation"),
-    @Property(name="sling.servlet.resourceTypes", value="sling/test-services/planet"),
-    @Property(name="sling.servlet.extensions", value="html"),
-    @Property(name="sling.servlet.methods", value="GET")
-})
+@Component(
+        service = javax.servlet.Servlet.class,
+        property = {
+                "service.description:String=HTML renderer for Planet resources",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.resourceTypes:String=sling/test-services/planet",
+                "sling.servlet.extensions:String=html",
+                "sling.servlet.methods:String=GET"
+        })
 @SuppressWarnings("serial")
 public class PlanetResourceRenderingServlet extends SlingSafeMethodsServlet {
 

@@ -21,16 +21,17 @@ package org.apache.sling.launchpad.testservices.jcr;
 import javax.jcr.Session;
 import javax.jcr.Workspace;
 
-import org.apache.felix.scr.annotations.Activate;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Deactivate;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
 import org.apache.sling.jcr.api.SlingRepository;
 import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 
-@Component
-@Property(name = Constants.SERVICE_DESCRIPTION, value = "Generates Test Workspaces ws1, ws2, ws3")
+@Component(
+        property = {
+            Constants.SERVICE_DESCRIPTION + ":String=Generates Test Workspaces ws1, ws2, ws3"
+        })
 public class WorkspaceCreator {
 
     @Reference

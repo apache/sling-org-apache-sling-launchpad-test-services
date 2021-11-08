@@ -22,16 +22,13 @@ import java.util.Hashtable;
 
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Properties;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Reference;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
 
@@ -40,13 +37,20 @@ import org.osgi.service.event.EventHandler;
  * that the authenticator service has accepted the configuration change.
  */
 @SuppressWarnings("serial")
-@Component(immediate = true)
-@Service
-@Properties({ @Property(name = "service.description", value = "Anonymous Access Config Servlet"),
-        @Property(name = "service.vendor", value = "The Apache Software Foundation"),
-        @Property(name = "sling.servlet.paths", value = "/testing/AnonymousAccessConfigServlet"),
-        @Property(name = "sling.servlet.extensions", value = "txt"),
-        @Property(name = "event.topics", value = "org/osgi/framework/ServiceEvent/MODIFIED") })
+@Component(
+        immediate = true,
+        service = {
+                org.osgi.service.event.EventHandler.class,
+                javax.servlet.Servlet.class
+        },
+        property = {
+                "service.description:String=Anonymous Access Config Servlet",
+                "service.vendor:String=The Apache Software Foundation",
+                "sling.servlet.paths:String=/testing/AnonymousAccessConfigServlet",
+                "sling.servlet.extensions:String=txt",
+                "event.topics:String=org/osgi/framework/ServiceEvent/MODIFIED"
+        }
+    )
 public class AnonymousAccessConfigServlet extends SlingAllMethodsServlet implements EventHandler {
 
     private static final String PROP_AUTH_ANNONYMOUS = "auth.annonymous";
