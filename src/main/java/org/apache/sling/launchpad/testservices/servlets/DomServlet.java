@@ -37,7 +37,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * The <tt>DomServlet</tt> evaluates a simple XML document using DOM APIs.
+ * The <code>DomServlet</code> evaluates a simple XML document using DOM APIs.
  * 
  */
 @Component(service=Servlet.class)

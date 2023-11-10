@@ -34,7 +34,7 @@ import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * The <tt>JaxbServlet</tt> serializes a basic JAXB-annotated class
+ * The <code>JaxbServlet</code> serializes a basic JAXB-annotated class
  * 
  */
 @Component(service=Servlet.class)

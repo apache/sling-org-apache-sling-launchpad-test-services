@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 import org.xml.sax.InputSource;
 
 /**
- * The <tt>XpathServlet</tt> evaluates a simple XML document using an XPath expression
+ * The <code>XpathServlet</code> evaluates a simple XML document using an XPath expression
  * 
  */
 @Component(service=Servlet.class)

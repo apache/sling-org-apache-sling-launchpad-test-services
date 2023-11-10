@@ -44,7 +44,9 @@ public class MappingsFacade {
     
     /** Save a Session that has mapping changes, and wait for the OSGi event
      *  that signals that mappings have been updated.
+     *  @param session the JCR session
      *  @return error message, null if ok
+     *  @throws Exception in case of any errors
      */
     public String saveMappings(Session session) throws Exception {
         final int oldEventsCount = eventsCounter.getEventsCount(MAPPING_EVENT_TOPIC);

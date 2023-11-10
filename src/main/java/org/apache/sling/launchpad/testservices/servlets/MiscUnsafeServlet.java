@@ -30,7 +30,7 @@ import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * Validates that the <tt>sun.misc.Unsafe</tt> class can be accessed
+ * Validates that the <code>sun.misc.Unsafe</code> class can be accessed
  *
  */
 @Component(service=Servlet.class)
