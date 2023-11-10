@@ -101,7 +101,11 @@ public class MappingEventsTest {
         }
     }
     
-    /** Test SLING-4058 - unexpected timeouts in saveMappings */
+    /** 
+     * Test SLING-4058 - unexpected timeouts in saveMappings
+     *
+     * @throws Exception in case of any problems
+     */
     @Test public void testSaveMappings() throws Exception {
         final Node base = mapRoot.getNode("map/https/localhost.443");
         final MappingsFacade f = new MappingsFacade(eventsCounter);

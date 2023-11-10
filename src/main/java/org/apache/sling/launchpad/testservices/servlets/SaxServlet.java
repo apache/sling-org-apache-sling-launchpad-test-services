@@ -38,7 +38,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * The <tt>SaxServlet</tt> evaluates a simple XML document using a SAX handler
+ * The <code>SaxServlet</code> evaluates a simple XML document using a SAX handler
  * 
  */
 @Component(service=Servlet.class)
