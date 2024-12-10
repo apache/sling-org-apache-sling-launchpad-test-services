@@ -18,10 +18,10 @@
  */
 package org.apache.sling.launchpad.testservices.servlets;
 
-import java.io.IOException;
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+
+import java.io.IOException;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -33,12 +33,10 @@ import org.osgi.service.component.annotations.Component;
  * Validates that the <code>sun.misc.Unsafe</code> class can be accessed
  *
  */
-@Component(service=Servlet.class)
-@SlingServletPathsStrict(
-        paths = "/bin/miscUnsafe",
-        extensions = "txt")
+@Component(service = Servlet.class)
+@SlingServletPathsStrict(paths = "/bin/miscUnsafe", extensions = "txt")
 public class MiscUnsafeServlet extends SlingAllMethodsServlet {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -48,7 +46,11 @@ public class MiscUnsafeServlet extends SlingAllMethodsServlet {
         // for the sun.misc package
         response.setContentType("text/plain");
         try {
-            response.getWriter().write(getClass().getClassLoader().loadClass("sun.misc.Unsafe").getCanonicalName());
+            response.getWriter()
+                    .write(getClass()
+                            .getClassLoader()
+                            .loadClass("sun.misc.Unsafe")
+                            .getCanonicalName());
         } catch (ClassNotFoundException e) {
             throw new ServletException("Failed loading Unsafe class", e);
         }

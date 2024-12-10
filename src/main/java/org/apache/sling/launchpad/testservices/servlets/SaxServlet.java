@@ -18,14 +18,14 @@
  */
 package org.apache.sling.launchpad.testservices.servlets;
 
-import java.io.IOException;
-import java.io.StringReader;
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
+import java.io.IOException;
+import java.io.StringReader;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -39,12 +39,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * The <code>SaxServlet</code> evaluates a simple XML document using a SAX handler
- * 
+ *
  */
-@Component(service=Servlet.class)
-@SlingServletPathsStrict(
-        paths = "/bin/sax",
-        extensions = "xml")
+@Component(service = Servlet.class)
+@SlingServletPathsStrict(paths = "/bin/sax", extensions = "xml")
 public class SaxServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 1L;
@@ -75,7 +73,8 @@ public class SaxServlet extends SlingAllMethodsServlet {
         private boolean matched;
 
         @Override
-        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        public void startElement(String uri, String localName, String qName, Attributes attributes)
+                throws SAXException {
 
             matched = "name".equals(qName);
         }
@@ -92,5 +91,4 @@ public class SaxServlet extends SlingAllMethodsServlet {
             return value;
         }
     }
-
 }

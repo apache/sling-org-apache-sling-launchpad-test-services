@@ -18,9 +18,9 @@
  */
 package org.apache.sling.launchpad.testservices.servlets.requestdispatcher;
 
-import java.io.IOException;
-
 import javax.servlet.ServletException;
+
+import java.io.IOException;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -32,12 +32,12 @@ import org.osgi.service.component.annotations.Component;
  * Simple servlet delivering a static string - used for testing request dispatcher include.
  */
 @Component(
-        immediate=true,
+        immediate = true,
         service = javax.servlet.Servlet.class,
         property = {
-                "service.description:String=Paths Test Servlet",
-                "service.vendor:String=The Apache Software Foundation",
-                "sling.servlet.paths:String=" + OriginalResponseServlet.PATH
+            "service.description:String=Paths Test Servlet",
+            "service.vendor:String=The Apache Software Foundation",
+            "sling.servlet.paths:String=" + OriginalResponseServlet.PATH
         })
 @SuppressWarnings("serial")
 public class OriginalResponseServlet extends SlingSafeMethodsServlet {
@@ -50,5 +50,4 @@ public class OriginalResponseServlet extends SlingSafeMethodsServlet {
         response.setContentType("text/plain;charset=UTF-8");
         response.getWriter().write("OriginalResponse");
     }
-
 }

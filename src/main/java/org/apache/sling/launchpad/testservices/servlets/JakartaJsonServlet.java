@@ -18,11 +18,15 @@
  */
 package org.apache.sling.launchpad.testservices.servlets;
 
-import java.io.IOException;
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
+import java.io.IOException;
+
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonWriter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
@@ -30,34 +34,27 @@ import org.apache.sling.servlets.annotations.SlingServletPathsStrict;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
 
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonWriter;
-
 /**
- * Serlializes a basic class using the Jakarta JSON API 
- * 
+ * Serlializes a basic class using the Jakarta JSON API
+ *
  */
-@Component(service=Servlet.class)
-@SlingServletPathsStrict(
-        paths = "/bin/jakarta",
-        extensions = "json")
+@Component(service = Servlet.class)
+@SlingServletPathsStrict(paths = "/bin/jakarta", extensions = "json")
 public class JakartaJsonServlet extends SlingSafeMethodsServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doGet(@NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    protected void doGet(@NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response)
+            throws ServletException, IOException {
 
-		JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-		objectBuilder.add("greeting", "hello, world");
-		JsonObject object = objectBuilder.build();
-		
-		response.setContentType("application/json");
-		try ( JsonWriter writer = Json.createWriter(response.getOutputStream()) ) {
-			writer.writeObject(object);
-		}
-	}
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+        objectBuilder.add("greeting", "hello, world");
+        JsonObject object = objectBuilder.build();
+
+        response.setContentType("application/json");
+        try (JsonWriter writer = Json.createWriter(response.getOutputStream())) {
+            writer.writeObject(object);
+        }
+    }
 }

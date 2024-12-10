@@ -18,10 +18,10 @@
  */
 package org.apache.sling.launchpad.testservices.servlets.requestdispatcher;
 
-import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+
+import java.io.IOException;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -33,12 +33,12 @@ import org.osgi.service.component.annotations.Component;
  * Servlet using RequestDispatcher.include to include output of another servlet in it's response.
  */
 @Component(
-        immediate=true,
+        immediate = true,
         service = javax.servlet.Servlet.class,
         property = {
-                "service.description:String=Paths Test Servlet",
-                "service.vendor:String=The Apache Software Foundation",
-                "sling.servlet.paths:String=" + RequestDispatcherIncludeDirectServlet.PATH
+            "service.description:String=Paths Test Servlet",
+            "service.vendor:String=The Apache Software Foundation",
+            "sling.servlet.paths:String=" + RequestDispatcherIncludeDirectServlet.PATH
         })
 @SuppressWarnings("serial")
 public class RequestDispatcherIncludeDirectServlet extends SlingSafeMethodsServlet {
@@ -57,5 +57,4 @@ public class RequestDispatcherIncludeDirectServlet extends SlingSafeMethodsServl
 
         response.getWriter().write(")");
     }
-
 }

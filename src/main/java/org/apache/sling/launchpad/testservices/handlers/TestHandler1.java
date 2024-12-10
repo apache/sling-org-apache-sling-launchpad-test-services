@@ -23,18 +23,14 @@ import org.osgi.service.component.annotations.Component;
 
 @Component(
         service = {
-                org.apache.jackrabbit.server.io.IOHandler.class,
-                org.apache.jackrabbit.server.io.PropertyHandler.class
+            org.apache.jackrabbit.server.io.IOHandler.class,
+            org.apache.jackrabbit.server.io.PropertyHandler.class
         },
-        property = {
-                Constants.SERVICE_RANKING + ":Integer=3"
-        }
-        )
+        property = {Constants.SERVICE_RANKING + ":Integer=3"})
 public class TestHandler1 extends AbstractHandler {
 
     @Override
-    public String getHandlerName(){
+    public String getHandlerName() {
         return "test-io-handler-1";
     }
-
 }

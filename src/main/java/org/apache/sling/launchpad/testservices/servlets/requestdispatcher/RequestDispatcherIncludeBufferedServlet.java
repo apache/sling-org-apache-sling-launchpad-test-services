@@ -18,10 +18,10 @@
  */
 package org.apache.sling.launchpad.testservices.servlets.requestdispatcher;
 
-import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+
+import java.io.IOException;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -37,12 +37,12 @@ import org.osgi.service.component.annotations.Component;
  * done into a "synthetic response" created via Sling Builders and the output than written to the real response.
  */
 @Component(
-        immediate=true,
+        immediate = true,
         service = javax.servlet.Servlet.class,
         property = {
-                "service.description:String=Paths Test Servlet",
-                "service.vendor:String=The Apache Software Foundation",
-                "sling.servlet.paths:String=" + RequestDispatcherIncludeBufferedServlet.PATH
+            "service.description:String=Paths Test Servlet",
+            "service.vendor:String=The Apache Software Foundation",
+            "sling.servlet.paths:String=" + RequestDispatcherIncludeBufferedServlet.PATH
         })
 @SuppressWarnings("serial")
 public class RequestDispatcherIncludeBufferedServlet extends SlingSafeMethodsServlet {
@@ -57,7 +57,8 @@ public class RequestDispatcherIncludeBufferedServlet extends SlingSafeMethodsSer
         response.getWriter().write("includeBuffered(");
 
         // build "synthetic response"
-        SlingHttpServletResponseResult syntheticResponse = Builders.newResponseBuilder().build();
+        SlingHttpServletResponseResult syntheticResponse =
+                Builders.newResponseBuilder().build();
 
         // write output of other servlet to this response to allow to post-process or validate it
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(OriginalResponseServlet.PATH);
@@ -68,5 +69,4 @@ public class RequestDispatcherIncludeBufferedServlet extends SlingSafeMethodsSer
 
         response.getWriter().write(")");
     }
-
 }

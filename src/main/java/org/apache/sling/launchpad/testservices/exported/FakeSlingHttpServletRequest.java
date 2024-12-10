@@ -1,30 +1,22 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.apache.sling.launchpad.testservices.exported;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.security.Principal;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.DispatcherType;
@@ -40,6 +32,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpUpgradeHandler;
 import javax.servlet.http.Part;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class FakeSlingHttpServletRequest implements HttpServletRequest {
 
@@ -65,13 +67,11 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
         this(null, null, -1, pathInfo, httpMethod);
     }
 
-    public FakeSlingHttpServletRequest(String scheme, String host, int port,
-            String pathInfo) {
+    public FakeSlingHttpServletRequest(String scheme, String host, int port, String pathInfo) {
         this(scheme, host, port, pathInfo, null);
     }
 
-    public FakeSlingHttpServletRequest(String scheme, String host, int port,
-            String pathInfo, String httpMethod) {
+    public FakeSlingHttpServletRequest(String scheme, String host, int port, String pathInfo, String httpMethod) {
         this.scheme = (scheme == null) ? "http" : scheme;
         this.host = (host == null) ? "localhost" : host;
         this.port = port;
@@ -195,15 +195,13 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
         return contextPath;
     }
 
-    public void removeAttribute(String name) {
-    }
+    public void removeAttribute(String name) {}
 
     public void setAttribute(String name, Object o) {
         attrs.put(name, o);
     }
 
-    public void setCharacterEncoding(String env) {
-    }
+    public void setCharacterEncoding(String env) {}
 
     public String getAuthType() {
         return null;
@@ -350,12 +348,12 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
 
     @Override
     public void login(String username, String password) throws ServletException {
-        //no-op
+        // no-op
     }
 
     @Override
     public void logout() throws ServletException {
-        //no-op
+        // no-op
     }
 
     @Override
@@ -372,5 +370,4 @@ public class FakeSlingHttpServletRequest implements HttpServletRequest {
     public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException {
         return null;
     }
-
 }
