@@ -16,16 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.sling.launchpad.testservices.handlers;
+
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 
 import org.apache.jackrabbit.server.io.DeleteContext;
 import org.apache.jackrabbit.server.io.DeleteHandler;
 import org.apache.jackrabbit.webdav.DavException;
 import org.apache.jackrabbit.webdav.DavResource;
-
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
 
 public abstract class AbstractDeleteHandler implements DeleteHandler {
 
@@ -33,10 +32,12 @@ public abstract class AbstractDeleteHandler implements DeleteHandler {
     protected String HANDLER_BKP;
 
     @Override
-    public boolean delete(DeleteContext deleteContext,
-            DavResource resource) throws DavException {
+    public boolean delete(DeleteContext deleteContext, DavResource resource) throws DavException {
         try {
-            deleteContext.getSession().getWorkspace().move(resource.getResourcePath(), resource.getResourcePath() + HANDLER_BKP);
+            deleteContext
+                    .getSession()
+                    .getWorkspace()
+                    .move(resource.getResourcePath(), resource.getResourcePath() + HANDLER_BKP);
             return true;
         } catch (RepositoryException e) {
             return false;
@@ -44,8 +45,7 @@ public abstract class AbstractDeleteHandler implements DeleteHandler {
     }
 
     @Override
-    public boolean canDelete(DeleteContext deleteContext,
-            DavResource resource) {
+    public boolean canDelete(DeleteContext deleteContext, DavResource resource) {
         try {
             Node nodeToDelete = deleteContext.getSession().getNode(resource.getResourcePath());
             return HANDLER_NAME.equals(nodeToDelete.getName());
@@ -53,5 +53,4 @@ public abstract class AbstractDeleteHandler implements DeleteHandler {
             return false;
         }
     }
-
 }

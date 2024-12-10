@@ -28,10 +28,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(
-        property = {
-            Constants.SERVICE_DESCRIPTION + ":String=Generates Test Workspaces ws1, ws2, ws3"
-        })
+@Component(property = {Constants.SERVICE_DESCRIPTION + ":String=Generates Test Workspaces ws1, ws2, ws3"})
 public class WorkspaceCreator {
 
     @Reference

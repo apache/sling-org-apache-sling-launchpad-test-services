@@ -24,15 +24,11 @@ import org.osgi.service.component.annotations.Component;
 
 @Component(
         service = DeleteHandler.class,
-        property = {
-                Constants.SERVICE_RANKING + ":Integer=2"
-        }
-        )
+        property = {Constants.SERVICE_RANKING + ":Integer=2"})
 public class TestDeleteHandler2 extends AbstractDeleteHandler {
 
     public TestDeleteHandler2() {
         this.HANDLER_NAME = "test-delete-handler-2";
         this.HANDLER_BKP = "backed-up-by-" + HANDLER_NAME;
     }
-
 }

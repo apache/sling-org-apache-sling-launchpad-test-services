@@ -1,27 +1,29 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.apache.sling.launchpad.testservices.servlets;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Enumeration;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.felix.utils.json.JSONWriter;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -37,10 +39,10 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
         service = javax.servlet.Servlet.class,
         property = {
-                "service.description:String=GetConfig Test Servlet",
-                "service.vendor:String=The Apache Software Foundation",
-                "sling.servlet.paths:String=/testing/GetConfigServlet",
-                "sling.servlet.extensions:String=json"
+            "service.description:String=GetConfig Test Servlet",
+            "service.vendor:String=The Apache Software Foundation",
+            "sling.servlet.paths:String=/testing/GetConfigServlet",
+            "sling.servlet.extensions:String=json"
         })
 public class GetConfigServlet extends SlingSafeMethodsServlet {
 
@@ -48,24 +50,24 @@ public class GetConfigServlet extends SlingSafeMethodsServlet {
     private ConfigurationAdmin configAdmin;
 
     @Override
-    protected void doGet(SlingHttpServletRequest request,SlingHttpServletResponse response)
-    throws ServletException,IOException {
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
+            throws ServletException, IOException {
 
         // PID comes from request suffix, like /testing/GetConfigServlet.tidy.json/integrationTestsConfig
         String pid = request.getRequestPathInfo().getSuffix();
-        if(pid == null || pid.length() == 0) {
+        if (pid == null || pid.length() == 0) {
             throw new ServletException("Configuration PID must be provided in request suffix");
         }
-        if(pid.startsWith("/")) {
+        if (pid.startsWith("/")) {
             pid = pid.substring(1);
         }
 
-        // Get config and properties. Avoid using configAdmin.getConfiguration(...) 
+        // Get config and properties. Avoid using configAdmin.getConfiguration(...)
         // to avoid creating a config that does not exist yet, which might cause
         // services to restart.
         final Configuration cfg = getUniqueConfig(pid);
         final Dictionary<?, ?> props = cfg.getProperties();
-        if(props == null) {
+        if (props == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Properties of config with pid=" + pid + " not found");
             return;
         }
@@ -81,33 +83,33 @@ public class GetConfigServlet extends SlingSafeMethodsServlet {
             w.key("pid").value(pid);
             w.key("properties");
             w.object();
-            while(keys.hasMoreElements()) {
+            while (keys.hasMoreElements()) {
                 final Object key = keys.nextElement();
                 final Object value = props.get(key);
-                if(value != null) {
+                if (value != null) {
                     w.key(key.toString()).value(value.toString());
                 }
             }
             w.endObject();
             w.endObject();
             w.flush();
-        } catch(IOException je) {
-            throw (IOException)new IOException("JSONException in doGet").initCause(je);
+        } catch (IOException je) {
+            throw (IOException) new IOException("JSONException in doGet").initCause(je);
         }
     }
-    
+
     private Configuration getUniqueConfig(String pid) throws ServletException {
         final String filter = "(service.pid=" + pid + ")";
-        Configuration [] cfg = null;
+        Configuration[] cfg = null;
         try {
             cfg = configAdmin.listConfigurations(filter);
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new ServletException("Error listing configs with filter " + filter, e);
         }
-        if(cfg == null) {
+        if (cfg == null) {
             throw new ServletException("No config found with filter " + filter);
         }
-        if(cfg.length > 1) {
+        if (cfg.length > 1) {
             throw new ServletException("Expected 1 config, found " + cfg.length + " with filter " + filter);
         }
         return cfg[0];

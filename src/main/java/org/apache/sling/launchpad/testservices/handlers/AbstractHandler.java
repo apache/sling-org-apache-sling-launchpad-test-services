@@ -18,6 +18,12 @@
  */
 package org.apache.sling.launchpad.testservices.handlers;
 
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+
+import java.io.IOException;
+import java.util.Map;
+
 import org.apache.jackrabbit.server.io.ExportContext;
 import org.apache.jackrabbit.server.io.IOManager;
 import org.apache.jackrabbit.server.io.ImportContext;
@@ -26,21 +32,15 @@ import org.apache.jackrabbit.server.io.PropertyImportContext;
 import org.apache.jackrabbit.webdav.DavResource;
 import org.apache.jackrabbit.webdav.property.PropEntry;
 
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
-import java.io.IOException;
-import java.util.Map;
-
 /**
  * This handler can export only if the path given in the context contains the handler name.
  */
-public abstract class AbstractHandler implements
-        org.apache.jackrabbit.server.io.IOHandler,
-        org.apache.jackrabbit.server.io.PropertyHandler {
+public abstract class AbstractHandler
+        implements org.apache.jackrabbit.server.io.IOHandler, org.apache.jackrabbit.server.io.PropertyHandler {
 
     private static final String HANDLER_IDENTIFIER = "handler-identifier";
 
-    private IOManager ioManager ;
+    private IOManager ioManager;
 
     // IOHandler
 
@@ -116,7 +116,8 @@ public abstract class AbstractHandler implements
         return false;
     }
 
-    public Map<? extends PropEntry, ?> importProperties(PropertyImportContext context, boolean b) throws RepositoryException {
+    public Map<? extends PropEntry, ?> importProperties(PropertyImportContext context, boolean b)
+            throws RepositoryException {
         throw new UnsupportedOperationException();
     }
 
@@ -132,6 +133,5 @@ public abstract class AbstractHandler implements
 
     //
 
-    public abstract String getHandlerName() ;
-
+    public abstract String getHandlerName();
 }

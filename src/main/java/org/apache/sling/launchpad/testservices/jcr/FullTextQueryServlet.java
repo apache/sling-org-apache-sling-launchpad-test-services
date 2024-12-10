@@ -18,8 +18,6 @@
  */
 package org.apache.sling.launchpad.testservices.jcr;
 
-import java.io.IOException;
-
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -28,6 +26,8 @@ import javax.jcr.query.QueryResult;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
@@ -35,16 +35,16 @@ import org.osgi.service.component.annotations.Component;
 
 /** Servlet used to test HtmlResponse escaping */
 @Component(
-        immediate=true, 
+        immediate = true,
         service = javax.servlet.Servlet.class,
         property = {
-                "service.description:String=FullText Query Servlet",
-                "service.vendor:String=The Apache Software Foundation",
-                "sling.servlet.paths:String=/testing/fullTextQuery"
+            "service.description:String=FullText Query Servlet",
+            "service.vendor:String=The Apache Software Foundation",
+            "sling.servlet.paths:String=/testing/fullTextQuery"
         })
 /**
  * Outputs paths of nodes matching the specified full-text search
- * 
+ *
  * <p>The paths are written in text format, one per line.</p>
  *
  */
@@ -57,28 +57,28 @@ public class FullTextQueryServlet extends SlingSafeMethodsServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/plain");
-        
+
         String queryText = request.getParameter("q");
-        if ( queryText == null || queryText.isEmpty() ) {
+        if (queryText == null || queryText.isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("Missing mandatory 'q' parameter");
             return;
         }
 
         Session session = request.getResourceResolver().adaptTo(Session.class);
-        
+
         try {
-            Query query = session.getWorkspace().getQueryManager().createQuery("SELECT * FROM [nt:base] AS s WHERE CONTAINS(s.*, $queryText)", Query.JCR_SQL2);
+            Query query = session.getWorkspace()
+                    .getQueryManager()
+                    .createQuery("SELECT * FROM [nt:base] AS s WHERE CONTAINS(s.*, $queryText)", Query.JCR_SQL2);
             query.bindValue("queryText", session.getValueFactory().createValue(queryText));
-            QueryResult result  = query.execute();
+            QueryResult result = query.execute();
             NodeIterator iterator = result.getNodes();
-            while( iterator.hasNext() ) {
+            while (iterator.hasNext()) {
                 response.getWriter().println(iterator.nextNode().getPath());
             }
         } catch (RepositoryException e) {
             throw new ServletException(e);
         }
-        
     }
-    
 }
