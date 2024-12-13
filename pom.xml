@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>org.apache.sling.launchpad.test-services</artifactId>
-    <version>13-SNAPSHOT</version>
+    <version>13</version>
 
     <name>Apache Sling Launchpad Testing Services</name>
     <description>Sling services used by the Launchpad Testing integration tests</description>
@@ -36,13 +36,13 @@
     <scm>
         <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-launchpad-test-services.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-launchpad-test-services.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>org.apache.sling.launchpad.test-services-13</tag>
         <url>https://github.com/apache/sling-org-apache-sling-launchpad-test-services.git</url>
     </scm>
 
     <properties>
         <sling.java.version>8</sling.java.version>
-        <project.build.outputTimestamp>2022-02-25T16:00:25Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2024-12-13T11:07:49Z</project.build.outputTimestamp>
     </properties>
     <dependencies>
         <dependency>
