@@ -2,6 +2,7 @@
 .idea
 .classpath
 .metadata
+.vscode
 .project
 .settings
 .externalToolBuilders
