@@ -20,6 +20,7 @@ package org.apache.sling.launchpad.testservices.servlets;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -55,6 +56,7 @@ public class SaxServlet extends SlingAllMethodsServlet {
         try {
 
             SAXParserFactory factory = SAXParserFactory.newInstance();
+            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             SAXParser parser = factory.newSAXParser();
             SimpleHandler handler = new SimpleHandler();
 
