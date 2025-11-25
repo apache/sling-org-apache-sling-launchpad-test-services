@@ -585,7 +585,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             assertNotNull(res);
             assertEquals("/virtual/child.html", res.getPath());
 
-            String url = resResolver.map(null, "/content/virtual.html");
+            String url = resResolver.map("/content/virtual.html");
             assertNotNull(url);
             assertEquals("https://localhost/virtual", url);
 
@@ -2183,7 +2183,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath());
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             assertNotNull(res);
             assertEquals(
                     rootNode.getPath() + "/child", res.getResourceMetadata().getResolutionPath());
@@ -2204,7 +2204,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnkel = resResolver.map(grandchild.getPath());
             assertEquals(pathEnkel, mappedEnkel);
 
-            Resource resEnkel = resResolver.resolve(null, pathEnkel);
+            Resource resEnkel = resResolver.resolve(pathEnkel);
             assertNotNull(resEnkel);
             assertEquals(
                     rootNode.getPath() + "/child/grandchild",
@@ -2235,7 +2235,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath() + selExt);
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             assertNotNull(res);
             assertEquals(
                     rootNode.getPath() + "/child", res.getResourceMetadata().getResolutionPath());
@@ -2255,7 +2255,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnkel = resResolver.map(grandchild.getPath() + selExt);
             assertEquals(pathEnkel, mappedEnkel);
 
-            Resource resEnkel = resResolver.resolve(null, pathEnkel);
+            Resource resEnkel = resResolver.resolve(pathEnkel);
             assertNotNull(resEnkel);
             assertEquals(
                     rootNode.getPath() + "/child/grandchild",
@@ -2286,7 +2286,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath() + selExt);
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             assertNotNull(res);
             assertEquals(
                     rootNode.getPath() + "/child", res.getResourceMetadata().getResolutionPath());
@@ -2306,7 +2306,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnkel = resResolver.map(grandchild.getPath() + selExt);
             assertEquals(pathEnkel, mappedEnkel);
 
-            Resource resEnkel = resResolver.resolve(null, pathEnkel);
+            Resource resEnkel = resResolver.resolve(pathEnkel);
             assertNotNull(resEnkel);
             assertEquals(
                     rootNode.getPath() + "/child/grandchild",
@@ -2337,7 +2337,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath() + selExt);
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             Node resNode = res.adaptTo(Node.class);
             assertNotNull(resNode);
 
@@ -2362,7 +2362,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath());
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             assertNotNull(res);
             assertEquals(rootNode.getPath() + "/kind", res.getResourceMetadata().getResolutionPath());
             assertEquals("", res.getResourceMetadata().getResolutionPathInfo());
@@ -2383,7 +2383,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnkel = resResolver.map(grandchild.getPath());
             assertEquals(pathEnkel, mappedEnkel);
 
-            Resource resEnkel = resResolver.resolve(null, pathEnkel);
+            Resource resEnkel = resResolver.resolve(pathEnkel);
             assertNotNull(resEnkel);
             assertEquals(
                     rootNode.getPath() + "/kind/enkel",
@@ -2479,7 +2479,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath());
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             assertNotNull(res);
             assertEquals(rootNode.getPath() + "/kind", res.getResourceMetadata().getResolutionPath());
             assertEquals("", res.getResourceMetadata().getResolutionPathInfo());
@@ -2495,7 +2495,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnfant = resResolver.map(child.getPath());
             assertEquals(path, mappedEnfant); // map always selects first alias
 
-            Resource resEnfant = resResolver.resolve(null, pathEnfant);
+            Resource resEnfant = resResolver.resolve(pathEnfant);
             assertNotNull(resEnfant);
             assertEquals(
                     rootNode.getPath() + "/enfant",
@@ -2518,7 +2518,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnkel = resResolver.map(grandchild.getPath());
             assertEquals(pathEnkel, mappedEnkel);
 
-            Resource resEnkel = resResolver.resolve(null, pathEnkel);
+            Resource resEnkel = resResolver.resolve(pathEnkel);
             assertNotNull(resEnkel);
             assertEquals(
                     rootNode.getPath() + "/kind/enkel",
@@ -2535,7 +2535,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnfantEnkel = resResolver.map(grandchild.getPath());
             assertEquals(pathEnkel, mappedEnfantEnkel); // map always selects first alias
 
-            Resource resEnfantEnkel = resResolver.resolve(null, pathEnfantEnkel);
+            Resource resEnfantEnkel = resResolver.resolve(pathEnfantEnkel);
             assertNotNull(resEnfantEnkel);
             assertEquals(
                     rootNode.getPath() + "/enfant/enkel",
@@ -2568,7 +2568,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath() + selExt);
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             assertNotNull(res);
             assertEquals(rootNode.getPath() + "/kind", res.getResourceMetadata().getResolutionPath());
             assertEquals(selExt, res.getResourceMetadata().getResolutionPathInfo());
@@ -2588,7 +2588,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnkel = resResolver.map(grandchild.getPath() + selExt);
             assertEquals(pathEnkel, mappedEnkel);
 
-            Resource resEnkel = resResolver.resolve(null, pathEnkel);
+            Resource resEnkel = resResolver.resolve(pathEnkel);
             assertNotNull(resEnkel);
             assertEquals(
                     rootNode.getPath() + "/kind/enkel",
@@ -2621,7 +2621,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath() + selExt);
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             assertNotNull(res);
             assertEquals(rootNode.getPath() + "/kind", res.getResourceMetadata().getResolutionPath());
             assertEquals(selExt, res.getResourceMetadata().getResolutionPathInfo());
@@ -2641,7 +2641,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mappedEnkel = resResolver.map(grandchild.getPath() + selExt);
             assertEquals(pathEnkel, mappedEnkel);
 
-            Resource resEnkel = resResolver.resolve(null, pathEnkel);
+            Resource resEnkel = resResolver.resolve(pathEnkel);
             assertNotNull(resEnkel);
             assertEquals(
                     rootNode.getPath() + "/kind/enkel",
@@ -2674,7 +2674,7 @@ public class ResourceResolverWithVanityBloomFilterTest {
             String mapped = resResolver.map(child.getPath() + selExt);
             assertEquals(path, mapped);
 
-            Resource res = resResolver.resolve(null, path);
+            Resource res = resResolver.resolve(path);
             Node resNode = res.adaptTo(Node.class);
             assertNotNull(resNode);
 
