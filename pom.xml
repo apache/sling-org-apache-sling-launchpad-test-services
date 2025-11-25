@@ -27,17 +27,17 @@
         <relativePath />
     </parent>
 
-    <artifactId>org.apache.sling.launchpad.test-services</artifactId>
+    <artifactId>org.apache.sling.starter.test-services</artifactId>
     <version>14-SNAPSHOT</version>
 
-    <name>Apache Sling Launchpad Testing Services</name>
-    <description>Sling services used by the Launchpad Testing integration tests</description>
+    <name>Apache Sling Starter Testing Services</name>
+    <description>Sling services used by the Sling Starter Testing integration tests</description>
 
     <scm>
-        <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-launchpad-test-services.git</connection>
-        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-launchpad-test-services.git</developerConnection>
+        <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-starter-test-services.git</connection>
+        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-starter-test-services.git</developerConnection>
         <tag>HEAD</tag>
-        <url>https://github.com/apache/sling-org-apache-sling-launchpad-test-services.git</url>
+        <url>https://github.com/apache/sling-org-apache-sling-starter-test-services.git</url>
     </scm>
 
     <properties>
