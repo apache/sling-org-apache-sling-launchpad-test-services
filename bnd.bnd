@@ -11,10 +11,10 @@ Sling-Bundle-Resources:\
   /system;path:=/SLING-INF/res/sling-test/sling/SLING-1733
 
 Sling-Test-Regexp:\
-  org.apache.sling.launchpad.testservices.serversidetests.*Test
+  org.apache.sling.starter.testservices.serversidetests.*Test
 
 Sling-Model-Packages:\
-  org.apache.sling.launchpad.testservices.models
+  org.apache.sling.starter.testservices.models
 
 -includeresource:\
   @org.apache.felix.utils-*.jar!/org/apache/felix/utils/json/JSONWriter*
