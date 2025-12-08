@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>org.apache.sling.starter.test-services</artifactId>
-    <version>14-SNAPSHOT</version>
+    <version>14</version>
 
     <name>Apache Sling Starter Testing Services</name>
     <description>Sling services used by the Sling Starter Testing integration tests</description>
@@ -36,13 +36,13 @@
     <scm>
         <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-starter-test-services.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-starter-test-services.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>org.apache.sling.starter.test-services-14</tag>
         <url>https://github.com/apache/sling-org-apache-sling-starter-test-services.git</url>
     </scm>
 
     <properties>
         <sling.java.version>11</sling.java.version>
-        <project.build.outputTimestamp>2024-12-13T11:08:06Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2025-12-08T13:20:41Z</project.build.outputTimestamp>
     </properties>
 
     <dependencies>
