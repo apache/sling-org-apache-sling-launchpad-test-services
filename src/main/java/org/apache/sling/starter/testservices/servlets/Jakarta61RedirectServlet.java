@@ -46,8 +46,8 @@ public class Jakarta61RedirectServlet extends SlingJakartaSafeMethodsServlet {
 
         // Prepare a custom body to check clearBuffer behavior
         response.setContentType("text/plain");
-        response.getWriter().write("Custom body before redirect");
         response.setCharacterEncoding(StandardCharsets.UTF_8);
+        response.getWriter().write("Custom body before redirect");
 
         // Use 6.1-only overload (custom status + keep buffer)
         response.sendRedirect(
