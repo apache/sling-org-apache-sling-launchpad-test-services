@@ -19,6 +19,7 @@
 package org.apache.sling.starter.testservices.servlets;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import jakarta.servlet.Servlet;
 import jakarta.servlet.http.HttpServletResponse;
@@ -46,6 +47,7 @@ public class Jakarta61RedirectServlet extends SlingJakartaSafeMethodsServlet {
         // Prepare a custom body to check clearBuffer behavior
         response.setContentType("text/plain");
         response.getWriter().write("Custom body before redirect");
+        response.setCharacterEncoding(StandardCharsets.UTF_8);
 
         // Use 6.1-only overload (custom status + keep buffer)
         response.sendRedirect(
