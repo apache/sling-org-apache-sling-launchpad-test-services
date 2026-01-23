@@ -16,6 +16,33 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-@org.osgi.annotation.versioning.Version("2.3.0")
 package org.apache.sling.starter.testservices.exported;
+
+/**
+ * POJO representing a request hash code.
+ *
+ * <p>Key characteristics: does not have a no-arg constructor and its AdapterFactory adapts from
+ * the legacy SlingHttpServletRequest interface.</p>
+ */
+public class RequestHashCodePojo {
+
+    private final String hashCode;
+
+    /**
+     * Constructor that takes the hashCode.
+     *
+     * @param hashCode the hash code as a string
+     */
+    public RequestHashCodePojo(String hashCode) {
+        this.hashCode = hashCode;
+    }
+
+    /**
+     * Gets the hash code value.
+     *
+     * @return the hash code as a string
+     */
+    public String getHashCode() {
+        return hashCode;
+    }
+}
