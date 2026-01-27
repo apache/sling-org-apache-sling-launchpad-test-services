@@ -21,9 +21,11 @@ package org.apache.sling.starter.testservices.models;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 
-@Model(adaptables = SlingHttpServletRequest.class)
+@Model(adaptables = SlingHttpServletRequest.class, resourceType = "sling/test/htl/model")
+@Exporter(name = "jackson", extensions = "json")
 public class DummyModel {
 
     private String message;
