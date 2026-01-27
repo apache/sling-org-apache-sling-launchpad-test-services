@@ -192,6 +192,19 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>scriptingbundle-maven-plugin</artifactId>
+                <version>0.5.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>metadata</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.rat</groupId>
                 <artifactId>apache-rat-plugin</artifactId>
                 <configuration>
